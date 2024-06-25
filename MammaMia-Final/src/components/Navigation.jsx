@@ -15,7 +15,7 @@ const Navigation = () => {
                     MammaMia
                 </Link>
                 <Nav className="me-auto d-flex justify-content-end">
-                    <Link className="nav-link" to="/cart">Carro
+                    <Link className="nav-link" to="/carrito">Carro
                         <FaShoppingCart className="me-2" />
                         <i className='bi bi-cart'></i> ${total.toFixed(2)}
                     </Link>

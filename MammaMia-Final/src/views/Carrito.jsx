@@ -1,18 +1,22 @@
-import React from 'react'
-import { useContext } from 'react'
-import { Alert, Button, Container, ListGroup } from 'react-bootstrap'
+
+import { useContext, useState } from 'react'
+import { Alert, Button, Container, ListGroup, Modal } from 'react-bootstrap'
 import { ContextCarrito } from '../context/Context';
 
 const Carrito = () => {
-    const { items, total, agregarAlCarrito, restCart, erase } = useContext(ContextCarrito)
-    const handleRemove = (item) => {
-      const confirmRemove = window.confirm(
-        "¿Seguro que desea eliminar este producto?"
-      );
-      if (confirmRemove) {
-        restCart(item);
-      }
-    };
+  const { items, total, agregarAlCarrito, restCart, erase } = useContext(ContextCarrito)
+  const [showModal, setShowModal] = useState(false);
+  const handleRemove = (item) => {
+    const confirmRemove = window.confirm(
+      "¿Seguro que desea eliminar este producto?"
+    );
+    if (confirmRemove) {
+      restCart(item);
+    }
+  };
+  const handleClose = () => {
+    setShowModal(false);
+  };
   return (
     <Container className="text-center mt-4">
       {items.length === 0 ? (
@@ -63,11 +67,22 @@ const Carrito = () => {
             <Button className="m-2" variant="warning" onClick={erase}>
               Limpiar Carrito
             </Button>
-            <Button variant="warning">
+            <Button variant="warning" onClick={() => setShowModal(true)}>
               Pagar
             </Button>
           </div>
-          
+          <Modal show={showModal} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Confirma tu compra</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>¿Deseas realizar el pago de tu compra?</Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary">No</Button>
+              <Button variant="primary" onClick={handleClose}>
+                Si
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </>
       )}
     </Container>

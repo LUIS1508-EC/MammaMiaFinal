@@ -12,7 +12,8 @@ export const Provider = ({ children }) => {
 
     const restCart = (item) => {
         const actualizar = [...items]
-        const itemIndex = actualizar.findIndex((items) => items.id === item.id
+        const itemIndex = actualizar.findIndex(
+            (items) => items.id === item.id
         )
 
         if (itemIndex !== -1) {
