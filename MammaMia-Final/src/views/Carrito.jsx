@@ -5,6 +5,14 @@ import { ContextCarrito } from '../context/Context';
 
 const Carrito = () => {
     const { items, total, agregarAlCarrito, restCart, erase } = useContext(ContextCarrito)
+    const handleRemove = (item) => {
+      const confirmRemove = window.confirm(
+        "¿Seguro que desea eliminar este producto?"
+      );
+      if (confirmRemove) {
+        restCart(item);
+      }
+    };
   return (
     <Container className="text-center mt-4">
       {items.length === 0 ? (
@@ -29,7 +37,7 @@ const Carrito = () => {
                   <Button
                     variant="danger"
                     size="sm"
-                    onClick={() => restCart(item)}
+                    onClick={() => handleRemove(item)}
                   >
                     -
                   </Button>{" "}

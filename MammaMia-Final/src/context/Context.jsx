@@ -7,7 +7,7 @@ export const Provider = ({ children }) => {
 
     const agregarAlCarrito = (item) => {
         setItems([...items, item])
-        setTotal(total + item.precio)
+        setTotal(total + item.price)
     }
 
     const restCart = (item) => {
@@ -20,7 +20,7 @@ export const Provider = ({ children }) => {
             setItems(actualizar)
             setTotal(
                 (pTotal) =>
-                    pTotal - removeItems.precio * (removeItems.cantidad || 1)
+                    pTotal - removeItems.price * (removeItems.quantity || 1)
             )
         }
     }
@@ -32,7 +32,8 @@ export const Provider = ({ children }) => {
 
     return (
         <ContextCarrito.Provider
-            value={{ items, total, agregarAlCarrito, restCart, erase }}>
+            value={{ items, total, agregarAlCarrito, restCart, erase }}
+            >
             {children}
         </ContextCarrito.Provider>
     )

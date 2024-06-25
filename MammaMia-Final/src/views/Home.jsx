@@ -15,19 +15,19 @@ const Home = () => {
     }, [])
 
     return (
-        <Container className='text-center'>
-            <section>
+        <Container className='d-flex'>
+            <div>
                 <div>
                     <Banner title={"Bienvenidos"} />
                 </div>
-                <Row xs={1} md={2} lg={4}>
+                <Row xs={1} md={2} lg={4} className='g-5'>
                     {pizzas.map((pizza) => (
                         <Col key={pizza.id}>
                             <Card pizza={pizza} />
                         </Col>
                     ))}
                 </Row>
-            </section>
+            </div>
         </Container>
     )
 }
